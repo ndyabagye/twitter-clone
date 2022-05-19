@@ -12,13 +12,13 @@ const feedQuery = groq`
 `
 
 type Data = {
-    tweet: Tweet[]
+    tweets: Tweet[]
 }
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    const tweets: Tweet = await sanityClient.fetch(feedQuery)
+    const tweets: Tweet []= await sanityClient.fetch(feedQuery)
     res.status(200).json({ tweets })
 }

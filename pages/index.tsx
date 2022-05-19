@@ -1,6 +1,7 @@
-import type { NextPage } from 'next'
+// import type { NextPage } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import { Toaster } from 'react-hot-toast'
 import Feed from '../components/Feed'
 import Sidebar from '../components/Sidebar'
 import Widgets from '../components/Widgets'
@@ -14,11 +15,12 @@ interface Props {
 const Home = ({ tweets }: Props) => {
   return (
     // <div className="flex min-h-screen flex-col items-center justify-center py-2">
-    <div className="lg:max-w-6xl mx-auto max-h-screen overflow-hidden">
+    <div className="lg:max-w-6xl mx-auto max-h-screen">
       <Head>
         <title>Twitter 2.0</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Toaster/>
       <main className='grid grid-cols-9'>
         {/* sidebar */}
         <Sidebar />
@@ -33,7 +35,7 @@ const Home = ({ tweets }: Props) => {
 
 export default Home
 
-export const getServerSideProps: GETServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const tweets = await fetchTweets()
   return {
     props: {
